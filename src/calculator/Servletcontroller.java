@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/ServletController")
-
-
+@WebServlet("/Servletcontroller")
 
 	public class Servletcontroller extends HttpServlet {
 
@@ -33,11 +31,38 @@ import javax.servlet.http.HttpSession;
 		// set the values with set parameter into variable a, b
 		
 		// get parameter operation 
+		BasicCalc det=new BasicCalc();
+		double a=Double.valueOf(req.getParameter("a"));
+		double b=Double.valueOf(req.getParameter("b"));
+		det.setA(a);
+		det.setB(b);
+		String operation=req.getParameter("operation");
+	
 		
-	//	switch (operation)		
+		switch (operation)		
 		{
+		case "Add":
+		c=det.Add();
+		System.out.println("c" +c);
+		break;
+		case "Subtract":
+		c=det.Subtract();
+		System.out.println("c");
+		break;
+		case "Multiply":
+		c=det.Multiply();
+		System.out.println("c");
+		break;
+		case "Divide":
+		c=det.Divide();
+		System.out.println("c");
+		break;
+		default:
+			System.out.println("wrong chioce");
+			break;
 		//write switch cases for calling different method of operations
 		}
+		req.setAttribute("answer",c);
 		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 		rd.forward(req, resp); 
 		} 
